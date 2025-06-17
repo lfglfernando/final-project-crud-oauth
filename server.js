@@ -8,6 +8,8 @@ require('./config/passportConfig');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
 const categoryRoutes = require('./routes/categories');
+const projectRoutes = require('./routes/projects');
+const priorityRoutes = require('./routes/priorities');
 const swaggerDocs = require('./swagger');
 const ensureAuth = require('./middleware/ensureAuth');
 
@@ -38,6 +40,8 @@ app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/api/tasks', ensureAuth, taskRoutes);
 app.use('/api/categories', ensureAuth, categoryRoutes);
+app.use('/api/projects', ensureAuth, projectRoutes);
+app.use('/api/priorities', ensureAuth, priorityRoutes);
 swaggerDocs(app);
 
 const port = process.env.PORT || 3000;

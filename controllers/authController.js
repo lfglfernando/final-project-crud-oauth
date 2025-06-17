@@ -16,6 +16,5 @@ exports.googleCallback = (req, res) => {
     expiresIn: '1d'
   });
 
-  // ✅ Redirige a /api-docs con el token
   res.redirect(`${process.env.BASE_URL}/api-docs?token=${token}`);
 };

@@ -23,7 +23,6 @@ exports.getTaskById = async (req, res) => {
 };
 
 exports.createTask = async (req, res) => {
-  // Ahora validamos 7 campos obligatorios:
   const { title, description, dueDate, priority, completed, categoryId, userId } = req.body;
 
   if (
@@ -31,7 +30,7 @@ exports.createTask = async (req, res) => {
     !description ||
     !dueDate ||
     !priority ||
-    completed === undefined ||  // completado puede ser true o false, pero no undefined
+    completed === undefined || 
     !categoryId ||
     !userId
   ) {
@@ -40,7 +39,6 @@ exports.createTask = async (req, res) => {
     });
   }
 
-  // Intentamos convertir categoryId a ObjectId; userId lo dejamos como string u ObjectId según tu lógica
   let catObjectId;
   try {
     catObjectId = new ObjectId(categoryId);
@@ -48,15 +46,14 @@ exports.createTask = async (req, res) => {
     return res.status(400).json({ error: 'Invalid categoryId format' });
   }
 
-  // Construimos el documento completo
   const newTask = {
     title,
     description,
-    dueDate: new Date(dueDate),      // Asegúrate de que venga en un formato ISO compatible
+    dueDate: new Date(dueDate),     
     priority,
-    completed: !!completed,           // Forzamos a booleano
+    completed: !!completed,          
     categoryId: catObjectId,
-    userId,                           // Puedes convertir a ObjectId si tus usuarios son ObjectId: new ObjectId(userId)
+    userId,                           
   };
 
   try {
@@ -68,7 +65,6 @@ exports.createTask = async (req, res) => {
 };
 
 exports.updateTask = async (req, res) => {
-  // Validamos los mismos campos obligatorios para la actualización:
   const { title, description, dueDate, priority, completed, categoryId, userId } = req.body;
 
   if (

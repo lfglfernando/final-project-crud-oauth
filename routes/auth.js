@@ -7,7 +7,7 @@ router.get(
   '/google',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
-    prompt: 'select_account' // fuerza a mostrar la selección de cuenta
+    prompt: 'select_account' 
   })
 );
 
