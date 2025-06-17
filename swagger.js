@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: 'https://advancedtaskmanager-oauth.onrender.com',
+        url: 'https://final-project-crud-oauth.onrender.com',
       },
     ],
     components: {
